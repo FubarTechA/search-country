@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- <script defer src="https://use.fontawesome.com/00f40a29b5.js"></script> -->
+    <script
+      defer
+      src="https://kit.fontawesome.com/3adb0860fa.js"
+      crossorigin="anonymous"
+    ></script>
+    <script defer src="script.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Where in the world?</h1>
+        <aside class="mode-aside">
+          <i class="fa-solid fa-moon mode-icon"></i>
+          <p>Dark Mode</p>
+        </aside>
+      </header>
+      <main>
+        <section class="home hide">
+          <div class="search">
+            <form action="">
+              <input
+                type="search"
+                name=""
+                id=""
+                placeholder="Search for a country..."
+              />
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </form>
+            <div class="region-div">
+              <div class="region">
+                <p>Filter by Region</p>
+                <i class="fa-solid fa-angle-up"></i>
+              </div>
+              <div class="dropdown-div">
+                <ul class="dropdown">
+                  <li>Africa</li>
+                  <li>America</li>
+                  <li>Asia</li>
+                  <li>Europe</li>
+                  <li>Oceania</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="country-div">
+            <!-- <div class="country">
+              <img src="" alt="" class="country-flag" />
+              <div class="country-info">
+                <h2 class="country-name"></h2>
+                <p>Population: <span class="country-population"></span></p>
+                <p>Region: <span class="country-region"></span></p>
+                <p>Capital: <span class="country-capital"></span></p>
+              </div>
+            </div>
+            <div class="country">
+              <img src="" alt="" class="country-flag" />
+              <div class="country-info">
+                <h2 class="country-name"></h2>
+                <p>Population: <span class="country-population"></span></p>
+                <p>Region: <span class="country-region"></span></p>
+                <p>Capital: <span class="country-capital"></span></p>
+              </div>
+            </div>
+            <div class="country">
+              <img src="" alt="" class="country-flag" />
+              <div class="country-info">
+                <h2 class="country-name"></h2>
+                <p>Population: <span class="country-population"></span></p>
+                <p>Region: <span class="country-region"></span></p>
+                <p>Capital: <span class="country-capital"></span></p>
+              </div>
+            </div>
+            <div class="country">
+              <img src="" alt="" class="country-flag" />
+              <div class="country-info">
+                <h2 class="country-name"></h2>
+                <p>Population: <span class="country-population"></span></p>
+                <p>Region: <span class="country-region"></span></p>
+                <p>Capital: <span class="country-capital"></span></p>
+              </div>
+            </div>
+            <div class="country">
+              <img src="" alt="" class="country-flag" />
+              <div class="country-info">
+                <h2 class="country-name"></h2>
+                <p>Population: <span class="country-population"></span></p>
+                <p>Region: <span class="country-region"></span></p>
+                <p>Capital: <span class="country-capital"></span></p>
+              </div>
+            </div>
+            <div class="country">
+              <img src="" alt="" class="country-flag" />
+              <div class="country-info">
+                <h2 class="country-name"></h2>
+                <p>Population: <span class="country-population"></span></p>
+                <p>Region: <span class="country-region"></span></p>
+                <p>Capital: <span class="country-capital"></span></p>
+              </div>
+            </div>
+            <div class="country">
+              <img src="" alt="" class="country-flag" />
+              <div class="country-info">
+                <h2 class="country-name"></h2>
+                <p>Population: <span class="country-population"></span></p>
+                <p>Region: <span class="country-region"></span></p>
+                <p>Capital: <span class="country-capital"></span></p>
+              </div>
+            </div>
+            <div class="country">
+              <img src="" alt="" class="country-flag" />
+              <div class="country-info">
+                <h2 class="country-name"></h2>
+                <p>Population: <span class="country-population"></span></p>
+                <p>Region: <span class="country-region"></span></p>
+                <p>Capital: <span class="country-capital"></span></p>
+              </div>
+            </div> -->
+          </div>
+        </section>
+        <section class="detail">
+          <button class="backBtn">
+            <i class="fa-solid fa-arrow-left"></i>
+            Back
+          </button>
+
+          <div class="detail-main">
+            <div class="detailimg-div">
+              <img src="" alt="" class="detail-img" />
+            </div>
+            <div class="detail-info">
+              <div class="info-div">
+                <div class="infoDiv1">
+                  <h2 class="detail-name">Belgium</h2>
+                  <p>Native Name:<span class="detail-natName"></span></p>
+                  <p>Population:<span class="detail-population"></span></p>
+                  <p>Region:<span class="detail-region"></span></p>
+                  <p>Sub Region<span class="detail-subRegion"></span></p>
+                  <p>Capital:<span class="detail-capital"></span></p>
+                </div>
+                <div class="infoDiv2">
+                  <p>Top Level Domain<span class="detail-domain"></span></p>
+                  <p>Currencies<span class="detail-currency"></span></p>
+                  <p>Languages<span class="detail-languages"></span></p>
+                </div>
+              </div>
+              <div class="detailborder-div">
+                <p>Border countries</p>
+                <button class="border-country">France</button>
+                <button class="border-country">Germany</button>
+                <button class="border-country">Netherlands</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
