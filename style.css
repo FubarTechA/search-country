@@ -113,12 +113,15 @@ input.light input::placeholder {
 
 .region {
   position: relative;
-  display: flex;
-  align-items: center;
   background-color: hsl(209, 23%, 22%);
   padding: 10px 15px;
   position: relative;
   cursor: pointer;
+}
+
+.region-info {
+  display: flex;
+  align-items: center;
 }
 
 .region.light {
@@ -134,9 +137,6 @@ input.light input::placeholder {
 .fa-angle-down {
   padding-left: 30px;
   font-size: 10px;
-}
-
-.dropdown-menu {
 }
 
 .dropdown {
@@ -169,6 +169,10 @@ input.light input::placeholder {
   list-style: none;
   margin-bottom: 5px;
   cursor: pointer;
+}
+
+.dropdown li.hover {
+  background-color: hsl(207, 26%, 17%);
 }
 
 .dropdown li:last-of-type {
@@ -262,8 +266,8 @@ input.light input::placeholder {
 
 .detailimg-div {
   width: 45%;
-  height: 100%;
-  background-color: black;
+  height: 400px;
+  /* background-color: black; */
 }
 
 .detail-img {
@@ -300,7 +304,7 @@ input.light input::placeholder {
 
 .detailborder-div {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
 }
 
 .detailborder-div p {
@@ -313,6 +317,7 @@ input.light input::placeholder {
   width: 85px;
   padding: 2px 0;
   margin-right: 10px;
+  margin-bottom: 10px;
   border: none;
   outline: none;
   background-color: hsl(209, 23%, 22%);
