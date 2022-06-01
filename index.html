@@ -23,12 +23,12 @@
       <header>
         <h1>Where in the world?</h1>
         <aside class="mode-aside">
-          <i class="fa-solid fa-moon mode-icon"></i>
-          <p>Dark Mode</p>
+          <i class="fa-solid fa-moon mode-icon" data-mode="sun"></i>
+          <p><span class="mode-span">Dark</span> Mode</p>
         </aside>
       </header>
       <main>
-        <section class="home hide">
+        <section class="home">
           <div class="search">
             <form action="">
               <input
@@ -42,16 +42,16 @@
             <div class="region-div">
               <div class="region">
                 <p>Filter by Region</p>
-                <i class="fa-solid fa-angle-up"></i>
-              </div>
-              <div class="dropdown-div">
-                <ul class="dropdown">
-                  <li>Africa</li>
-                  <li>America</li>
-                  <li>Asia</li>
-                  <li>Europe</li>
-                  <li>Oceania</li>
-                </ul>
+                <i class="fa-solid fa-angle-up dropdown-icon"></i>
+                <div class="dropdown">
+                  <ul>
+                    <li>Africa</li>
+                    <li>America</li>
+                    <li>Asia</li>
+                    <li>Europe</li>
+                    <li>Oceania</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -130,14 +130,14 @@
             </div> -->
           </div>
         </section>
-        <section class="detail">
+        <section class="detail hide">
           <button class="backBtn">
             <i class="fa-solid fa-arrow-left"></i>
             Back
           </button>
 
           <div class="detail-main">
-            <div class="detailimg-div">
+            <!-- <div class="detailimg-div">
               <img src="" alt="" class="detail-img" />
             </div>
             <div class="detail-info">
@@ -164,7 +164,7 @@
                   <button class="border-country">Netherlands</button>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </section>
       </main>
