@@ -263,6 +263,7 @@ input.light input::placeholder {
 .backBtn.light {
   color: hsl(200, 15%, 8%);
   border: 1px solid hsl(200, 15%, 8%);
+  background-color: transparent;
 }
 
 .backBtn i {
@@ -337,8 +338,9 @@ input.light input::placeholder {
 }
 
 .border-country.light {
-  background-color: hsl(0, 0%, 98%);
+  background-color: transparent;
   border: 1px solid hsl(200, 15%, 8%);
+  color: hsl(200, 15%, 8%);
 }
 
 @media only screen and (max-width: 912px) {

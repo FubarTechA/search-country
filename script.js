@@ -2,6 +2,8 @@
 
 // selecting elements
 const countryFlag = document.querySelector(".country-flag");
+// const button = document.queryselecctorAll("button");
+const button = document.querySelectorAll("button");
 const wrapper = document.querySelector(".wrapper");
 const home = document.querySelector(".home");
 const detail = document.querySelector(".detail");
@@ -24,7 +26,7 @@ const detailMain = document.querySelector(".detail-main");
 const modeIcon = document.querySelector(".mode-icon");
 const modeAside = document.querySelector(".mode-aside");
 const modeSpan = document.querySelector(".mode-span");
-const borderCountry = document.querySelector(".border-country");
+const borderCountry = document.querySelectorAll(".border-country");
 
 // functions
 
@@ -45,13 +47,13 @@ const showDropDown = function () {
 // function to displayCountries on home page
 const displayCountries = function (info) {
   const markup = ` 
-  <div class="country">
+  <div class="country ${wrapper.classList.contains("light") ? "light" : ""}">
   <img src="${info.flags.png}" alt="" class="country-flag" />
           <div class="country-info">
             <h2 class="country-name">${info.name.official}</h2>
-            <p>Population: <span class="country-population">${
-              info.population
-            }</span></p>
+            <p>Population: <span class="country-population">${new Intl.NumberFormat(
+              "en-US"
+            ).format(info.population)}</span></p>
             <p>Region: <span class="country-region">${info.region}</span></p>
             <p>Capital: <span class="country-capital">${
               info.capital ? info.capital : "Not Available"
@@ -76,9 +78,9 @@ const displayParticularCountry = function (country) {
         Object.values(country.name.nativeName).length - 1
       ].common
     }</span></p>
-    <p>Population: <span class="detail-population">${
-      country.population
-    }</span></p>
+    <p>Population: <span class="detail-population">${new Intl.NumberFormat(
+      "en-US"
+    ).format(country.population)}</span></p>
     <p>Region: <span class="detail-region">${country.region}</span></p>
     <p>Sub Region: <span class="detail-subRegion">${
       country.subregion ? country.subregion : "Not Available"
@@ -100,12 +102,76 @@ const displayParticularCountry = function (country) {
   </div>
 </div>
 <div class="detailborder-div">
-  <p>Border countries</p>
+  <p>Border countries:</p>
   <div class="borders">
   ${
     country.borders
       ? country.borders
-          .map((border) => `<button class="border-country">${border}</button>`)
+          .map(
+            (border) =>
+              `<button class="border-country ${
+                wrapper.classList.contains("light") ? "light" : ""
+              }">${border}</button>`
+          )
+          .join("")
+      : "None"
+  }
+  </div>
+</div>
+</div>
+`;
+  detailMain.insertAdjacentHTML("beforeend", markup);
+};
+
+const displayborderCountry = function (country) {
+  const markup = `
+<div class="detailimg-div">
+<img src="${country.flags.svg}" alt="" class="detail-img" />
+</div>
+<div class="detail-info">
+<div class="info-div">
+  <div class="infoDiv1">
+    <h2 class="detail-name">${country.name}</h2>
+    <p>Native Name: <span class="detail-natName">${
+      country.nativeName
+    }</span></p>
+    <p>Population: <span class="detail-population">${new Intl.NumberFormat(
+      "en-US"
+    ).format(country.population)}</span></p>
+    <p>Region: <span class="detail-region">${country.region}</span></p>
+    <p>Sub Region: <span class="detail-subRegion">${
+      country.subregion ? country.subregion : "Not Available"
+    }</span></p>
+    <p>Capital: <span class="detail-capital">${
+      country.capital ? country.capital : "Not Available"
+    }</span></p>
+  </div>
+  <div class="infoDiv2">
+    <p>Top Level Domain: <span class="detail-domain">${
+      country.topLevelDomain
+    }</span></p>
+    <p>Currencies: <span class="detail-currency">${
+      country.currencies
+        ? Object.values(country.currencies)[0].name
+        : "No Official Currency"
+    }</span></p>
+    <p>Languages: <span class="detail-languages">${country.languages
+      .map((language) => language.name)
+      .join(", ")}</span></p>
+  </div>
+</div>
+<div class="detailborder-div">
+  <p>Border countries:</p>
+  <div class="borders">
+  ${
+    country.borders
+      ? country.borders
+          .map(
+            (border) =>
+              `<button class="border-country ${
+                wrapper.classList.contains("light") ? "light" : ""
+              }">${border}</button>`
+          )
           .join("")
       : "None"
   }
@@ -118,31 +184,64 @@ const displayParticularCountry = function (country) {
 
 // function for displaying all countries on load
 const allcountry = async function () {
-  const res = await fetch("https://restcountries.com/v3.1/all");
-  const data = await res.json();
-  data.forEach((country) => {
-    displayCountries(country);
-  });
+  try {
+    const res = await fetch("https://restcountries.com/v3.1/all");
+    if (!res.ok) throw new Error("Check your internet connection");
+    const data = await res.json();
+    data.forEach((country) => {
+      displayCountries(country);
+    });
+  } catch (err) {
+    alert(err.message);
+  }
 };
 
 // function that gets countries according to region
 const regionFunc = async function (reg) {
-  const res = await fetch(`https://restcountries.com/v3.1/region/${reg}`);
-  const data = await res.json();
-  data.forEach((country) => {
-    displayCountries(country);
-  });
+  try {
+    const res = await fetch(`https://restcountries.com/v3.1/region/${reg}`);
+    if (!res.ok) throw new Error("check your internet connection");
+    const data = await res.json();
+    data.forEach((country) => {
+      displayCountries(country);
+    });
+  } catch (err) {
+    alert(err);
+  }
 };
 
 // displaying particular country
 
 const countryFunc = async function (name) {
-  const res = await fetch(`https://restcountries.com/v3.1/name/${name}`);
-  const data = await res.json();
-  const country = data[0];
-  // console.log(country);
-  displayParticularCountry(country);
+  try {
+    const res = await fetch(`https://restcountries.com/v3.1/name/${name}`);
+    if (!res.ok)
+      throw new Error(
+        "The Country name is incorrect or Check your internet connection"
+      );
+    const data = await res.json();
+    const country = data[0];
+    console.log();
+    displayParticularCountry(country);
+  } catch (err) {
+    alert(err.message);
+  }
 };
+
+const borderFunc = async function (border) {
+  try {
+    const res = await fetch(`https://restcountries.com/v2/alpha/${border}`);
+    if (!res.ok) throw new Error("Check your internet connection");
+    const data = await res.json();
+    const country = data;
+    console.log(country);
+    displayborderCountry(country);
+  } catch (err) {
+    alert(err);
+  }
+};
+
+// borderFunc("BFA");
 
 // function for displaying the detail page
 const displayDetail = function () {
@@ -154,13 +253,12 @@ const displayDetail = function () {
 const selectMode = function () {
   modeAside.addEventListener("click", function () {
     const country = document.querySelectorAll(".country");
-    const borderCountry = document.querySelectorAll(".border-country");
-
+    const bordercountry = document.querySelectorAll(".border-country");
     // adding all the elements that the light class will be toggled on
-    const arr = [wrapper, header, input, region, detail, backBtn];
+    const arr = [wrapper, header, input, region, backBtn, detail, dropdown];
 
     // adding the dropdownli and country nodelist plus the arr array into a new arr
-    const secondArr = [arr, dropdownLi, country, borderCountry];
+    const secondArr = [arr, dropdownLi, country, bordercountry];
 
     if (modeIcon.dataset.mode === "sun") {
       modeIcon.classList.remove("fa-moon");
@@ -185,7 +283,6 @@ allcountry();
 selectMode();
 
 regionInfo.addEventListener("click", function () {
-  console.log("clicked");
   if (dropdown.classList.contains("show")) {
     hideDropdown();
   } else {
@@ -214,14 +311,12 @@ regionUl.addEventListener("click", function (e) {
 regionUl.addEventListener("mouseover", function (e) {
   const listitem = e.target.closest("li");
   if (!listitem) return;
-  console.log(listitem);
   listitem.classList.add("hover");
 });
 
 regionUl.addEventListener("mouseout", function (e) {
   const listitem = e.target.closest("li");
   if (!listitem) return;
-  console.log(listitem);
   listitem.classList.remove("hover");
 });
 
@@ -264,7 +359,7 @@ detailMain.addEventListener("click", function (e) {
   detailMain.innerHTML = "";
 
   // dislplaying border country
-  countryFunc(borderCountry);
+  borderFunc(borderCountry);
 });
 
 backBtn.addEventListener("click", function () {
@@ -276,3 +371,11 @@ backBtn.addEventListener("click", function () {
 });
 
 // countryFunc("BEN");
+
+country.forEach((country) => {
+  if (!wrapper.classList.contains("light")) {
+    country.classList.remove("light");
+  } else {
+    country.classList.remove("light");
+  }
+});
