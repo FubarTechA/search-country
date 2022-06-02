@@ -86,15 +86,17 @@ input {
   padding: 10px 0;
   padding-left: 70px;
   box-shadow: 0px 5px 5px rgb(33, 38, 53);
+  color: hsl(0, 0%, 100%);
 }
 
 input.light {
   background-color: hsl(0, 0%, 100%);
   box-shadow: 0px 5px 20px rgb(200, 200, 202);
+  color: hsl(200, 15%, 8%);
 }
 
 input::placeholder {
-  color: hsl(0, 0%, 100%);
+  color: hsl(200, 15%, 8%);
 }
 
 input.light input::placeholder {
@@ -175,6 +177,10 @@ input.light input::placeholder {
   background-color: hsl(207, 26%, 17%);
 }
 
+.dropdown li.light.hover {
+  background-color: hsl(0, 0%, 98%);
+}
+
 .dropdown li:last-of-type {
   margin-bottom: 0;
   z-index: 10;
@@ -233,10 +239,13 @@ input.light input::placeholder {
   width: 90%;
   background-color: hsl(207, 26%, 17%);
   padding: 50px 5%;
-  color: hsl(0, 0%, 100%);
   font-size: 16px;
   padding-bottom: 50px;
   height: auto;
+}
+
+.detail.light {
+  background-color: hsl(0, 0%, 98%);
 }
 
 .detail.hide {
@@ -249,6 +258,11 @@ input.light input::placeholder {
   color: hsl(0, 0%, 100%);
   border: none;
   outline: none;
+  border-radius: 3px;
+}
+.backBtn.light {
+  color: hsl(200, 15%, 8%);
+  border: 1px solid hsl(200, 15%, 8%);
 }
 
 .backBtn i {
@@ -313,7 +327,6 @@ input.light input::placeholder {
 }
 
 .border-country {
-  color: hsl(0, 0%, 100%);
   width: 85px;
   padding: 2px 0;
   margin-right: 10px;
@@ -321,6 +334,11 @@ input.light input::placeholder {
   border: none;
   outline: none;
   background-color: hsl(209, 23%, 22%);
+}
+
+.border-country.light {
+  background-color: hsl(0, 0%, 98%);
+  border: 1px solid hsl(200, 15%, 8%);
 }
 
 @media only screen and (max-width: 912px) {
