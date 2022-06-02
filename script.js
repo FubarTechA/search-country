@@ -26,6 +26,8 @@ const detailMain = document.querySelector(".detail-main");
 const modeIcon = document.querySelector(".mode-icon");
 const modeAside = document.querySelector(".mode-aside");
 const modeSpan = document.querySelector(".mode-span");
+const overlay = document.querySelector(".overlay");
+const overlayDiv = document.querySelector(".overlay div");
 const borderCountry = document.querySelectorAll(".border-country");
 
 // functions
@@ -42,6 +44,14 @@ const showDropDown = function () {
   dropdown.classList.add("show");
   dropdownIcon.classList.add("fa-angle-up");
   dropdownIcon.classList.remove("fa-angle-down");
+};
+
+// function for error whenever the fetch request is not fulfilled
+const renderError = function (message) {
+  overlay.classList.add("show");
+  overlayDiv.classList.add("show");
+  const para = overlayDiv.querySelector("p");
+  para.textContent = message;
 };
 
 // function to displayCountries on home page
@@ -192,7 +202,8 @@ const allcountry = async function () {
       displayCountries(country);
     });
   } catch (err) {
-    alert(err.message);
+    // alert(err.message);
+    renderError();
   }
 };
 
@@ -206,7 +217,7 @@ const regionFunc = async function (reg) {
       displayCountries(country);
     });
   } catch (err) {
-    alert(err);
+    renderError(err.message);
   }
 };
 
@@ -224,7 +235,7 @@ const countryFunc = async function (name) {
     console.log();
     displayParticularCountry(country);
   } catch (err) {
-    alert(err.message);
+    renderError(err.message);
   }
 };
 
@@ -237,7 +248,7 @@ const borderFunc = async function (border) {
     console.log(country);
     displayborderCountry(country);
   } catch (err) {
-    alert(err);
+    renderError(err.message);
   }
 };
 
@@ -370,12 +381,9 @@ backBtn.addEventListener("click", function () {
   detail.classList.add("hide");
 });
 
-// countryFunc("BEN");
-
-country.forEach((country) => {
-  if (!wrapper.classList.contains("light")) {
-    country.classList.remove("light");
-  } else {
-    country.classList.remove("light");
-  }
+overlay.addEventListener("click", function () {
+  overlay.classList.remove("show");
+  overlayDiv.classList.remove("show");
+  home.classList.remove("hide");
+  detail.classList.add("hide");
 });
