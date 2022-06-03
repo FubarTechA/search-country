@@ -379,8 +379,85 @@ input.light input::placeholder {
   padding: 0 30px;
 }
 
+.overlay div.light {
+  background-color: hsl(0, 0%, 98%);
+  color: hsl(200, 15%, 8%);
+}
+
 .overlay div.show {
   transform: translateY(0);
+}
+
+.spinner-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.spinner-container.hide {
+  opacity: 0;
+  pointer-events: 0;
+}
+
+.spinner {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  left: 50%;
+}
+
+.spinner.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.spinner div {
+  box-sizing: border-box;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 8px solid transparent;
+  border-top-color: blue;
+  z-index: 50;
+  border-radius: 50%;
+  animation: spinnerOne 1.2s linear infinite;
+}
+
+.spinner div:nth-child(2) {
+  border: 8px solid transparent;
+  border-bottom-color: blue;
+  animation: spinnerTwo 1.2s linear infinite;
+}
+
+@keyframes spinnerOne {
+  0% {
+    transform: rotate(0deg);
+    border-width: 10px;
+  }
+  50% {
+    transform: rotate(180deg);
+    border-width: 1px;
+  }
+  100% {
+    transform: rotate(360deg);
+    border-width: 10px;
+  }
+}
+
+@keyframes spinnerTwo {
+  0% {
+    transform: rotate(0deg);
+    border-width: 1px;
+  }
+  50% {
+    transform: rotate(180deg);
+    border-width: 10px;
+  }
+  100% {
+    transform: rotate(360deg);
+    border-width: 1px;
+  }
 }
 
 @media only screen and (max-width: 912px) {
@@ -476,5 +553,16 @@ input.light input::placeholder {
     width: 85px;
     padding: 4px 0;
     margin-right: 0;
+  }
+
+  .overlay div {
+    font-size: 18px;
+  }
+
+  .spinner-container {
+    position: absolute;
+    top: 50%;
+    left: 35%;
+    /* transform: translate(-50%, -50%); */
   }
 }

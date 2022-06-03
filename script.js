@@ -28,6 +28,8 @@ const modeAside = document.querySelector(".mode-aside");
 const modeSpan = document.querySelector(".mode-span");
 const overlay = document.querySelector(".overlay");
 const overlayDiv = document.querySelector(".overlay div");
+const spinnerDiv = document.querySelector(".spinner-container");
+const spinner = document.querySelector(".spinner");
 const borderCountry = document.querySelectorAll(".border-country");
 
 // functions
@@ -54,6 +56,27 @@ const renderError = function (message) {
   para.textContent = message;
 };
 
+// create spinner
+const spinnerFunc = function (parent) {
+  const markup = `
+  <div class="spinner-container">
+  <div class="spinner">
+    <div></div>
+    <div></div>
+  </div>
+</div>
+  `;
+  parent.insertAdjacentHTML("afterbegin", markup);
+};
+
+// function to hide spinner
+const hideSpinner = function () {
+  const spinnerDiv = document.querySelectorAll(".spinner-container");
+  const spinner = document.querySelectorAll(".spinner");
+  spinnerDiv.forEach((div) => div.classList.add("hide"));
+  spinner.forEach((spin) => spin.classList.add("hide"));
+};
+
 // function to displayCountries on home page
 const displayCountries = function (info) {
   const markup = ` 
@@ -71,6 +94,7 @@ const displayCountries = function (info) {
           </div>
         </div>
   `;
+  hideSpinner();
   countryDiv.insertAdjacentHTML("beforeend", markup);
 };
 
@@ -130,6 +154,7 @@ const displayParticularCountry = function (country) {
 </div>
 </div>
 `;
+  hideSpinner();
   detailMain.insertAdjacentHTML("beforeend", markup);
 };
 
@@ -189,6 +214,7 @@ const displayborderCountry = function (country) {
 </div>
 </div>
 `;
+  hideSpinner();
   detailMain.insertAdjacentHTML("beforeend", markup);
 };
 
@@ -232,7 +258,6 @@ const countryFunc = async function (name) {
       );
     const data = await res.json();
     const country = data[0];
-    console.log();
     displayParticularCountry(country);
   } catch (err) {
     renderError(err.message);
@@ -245,7 +270,6 @@ const borderFunc = async function (border) {
     if (!res.ok) throw new Error("Check your internet connection");
     const data = await res.json();
     const country = data;
-    console.log(country);
     displayborderCountry(country);
   } catch (err) {
     renderError(err.message);
@@ -266,7 +290,16 @@ const selectMode = function () {
     const country = document.querySelectorAll(".country");
     const bordercountry = document.querySelectorAll(".border-country");
     // adding all the elements that the light class will be toggled on
-    const arr = [wrapper, header, input, region, backBtn, detail, dropdown];
+    const arr = [
+      wrapper,
+      header,
+      input,
+      region,
+      backBtn,
+      detail,
+      dropdown,
+      overlayDiv,
+    ];
 
     // adding the dropdownli and country nodelist plus the arr array into a new arr
     const secondArr = [arr, dropdownLi, country, bordercountry];
@@ -290,6 +323,8 @@ const selectMode = function () {
   });
 };
 
+// init functions
+spinnerFunc(countryDiv);
 allcountry();
 selectMode();
 
@@ -356,7 +391,11 @@ countryDiv.addEventListener("click", function (e) {
   // selecting the country
   const countryName = country.querySelector("h2").textContent;
 
+  // display detail page
   displayDetail();
+
+  // display spinner
+  spinnerFunc(detailMain);
 
   // displaying the country info
   countryFunc(countryName);
@@ -364,13 +403,18 @@ countryDiv.addEventListener("click", function (e) {
 
 detailMain.addEventListener("click", function (e) {
   // selecting border country
-  const borderCountry = e.target.closest(".border-country").textContent;
+  const borderCountry = e.target.closest(".border-country");
+  if (!borderCountry) return;
+  const name = borderCountry.textContent;
 
   // deleting all html in the detail main section
   detailMain.innerHTML = "";
 
+  // add spinner
+  spinnerFunc(detailMain);
+
   // dislplaying border country
-  borderFunc(borderCountry);
+  borderFunc(name);
 });
 
 backBtn.addEventListener("click", function () {
@@ -381,6 +425,7 @@ backBtn.addEventListener("click", function () {
   detail.classList.add("hide");
 });
 
+// hiding the overlay on click
 overlay.addEventListener("click", function () {
   overlay.classList.remove("show");
   overlayDiv.classList.remove("show");
