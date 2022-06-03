@@ -346,6 +346,9 @@ regionUl.addEventListener("click", function (e) {
   // deleting the html from the countrydiv
   countryDiv.innerHTML = "";
 
+  // add spinner
+  spinnerFunc(countryDiv);
+
   // displaying countries based on region selected
   regionFunc(region);
 
@@ -380,6 +383,10 @@ document.addEventListener("keydown", function (e) {
     input.setAttribute("placeholder", "Search for a country...");
     // display the detail page
     displayDetail();
+
+    // add spinner
+    spinnerFunc(detailMain);
+
     countryFunc(country);
   }
 });
